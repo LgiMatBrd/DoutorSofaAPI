@@ -14,7 +14,7 @@ angular.module('microAzureBlog', [])
 			// ]
 		};
 
-		$http.get('https://yourmobileservice.azure-mobile.net/tables/posts').success(function(data) {
+        $http.get('https://doutorsofa.azurewebsites.net/lista/Todoitem').success(function(data) {
 			$scope.model.posts = data;
 		});
 	});
