@@ -1,55 +1,50 @@
-﻿<!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Microblog with Azure Mobile Services</title>
 
-    http://www.apache.org/licenses/LICENSE-2.0
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.css" rel="stylesheet">
 
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://doutorsofa.azurewebsites.net; style-src 'self'; media-src *">
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="viewport" content="width=device-width, user-scalable=no" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>Todo list: doutorsofa</title>
-    </head>
-    <body>
-        <div id='wrapper'>
-            <article>
-                <header>
-                    <h2>Azure xD</h2>
-                    <h1>Mobile Apps</h1>
+  </head>
+  
+  <body ng-app="microAzureBlog">
+	  
+	<div class="container body-content">
+		<div class="jumbotron">
+    		<h1>A simple blog with Azure Mobile Services</h1>
+		</div>
+		<div class="row">
+	  		<div class="col-xs-12 col-sm-6 col-md-8" ng-controller="blogpostController">
+				  <article ng-repeat="post in model.posts">
+					  <h1 ng-bind="post.title">
+						
+					  </h1>
+					  <p ng-bind="post.text">
+						
+						</p>
+				  </article>
+			</div>
+	  		<div class="col-xs-6 col-md-4">
+			<aside>
+				This is a simple example on how to access data on Azure Mobile Services with AngularJS.
+			</aside>	  
+			</div>
+		</div>
+		<footer>
+			For more information on Microsoft Azure visit <a href="http://azure.microsoft.com">http://azure.microsoft.com</a>.
+		</footer>
+	</div>
 
-                    <form id='add-item'>
-                        <button type='button' id='refresh'>Refresh</button>
-                        <button type='submit'>Add</button>
-                        <div><input type='text' id='new-item-text' placeholder='Enter new task' /></div>
-                    </form>
-                </header>
+    <script src="js/jquery.js"></script>
 
-                <ul id='todo-items'></ul>
-                <p id='summary'>Initializing...</p>
-            </article>
-
-            <footer>
-                <ul id='errorlog'></ul>
-            </footer>
-        </div>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
-    </body>
+    <script src="js/bootstrap.js"></script>
+	
+	<script src="js/angular.js"></script>
+	
+	<script src="app/controllers/blogpostController.js"></script>
+	
+  </body>
 </html>
