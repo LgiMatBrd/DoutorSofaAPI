@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<widget xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" id="com.microsoft.azure.mobileapps.doutorsofa" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" defaultlocale="en-US">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<widget xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" id="com.microsoft.azure.mobileapps.doutorsofa" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" defaultlocale="pt-BR">
   <name>doutorsofa</name>
   <description>doutorsofa</description>
   <author email="mobileservices@microsoft.com" href="http://www.windowsazure.com/en-us/develop/mobile/">
@@ -106,7 +106,6 @@
   <platform name="wp8">
     <splash src="res/screens/wp8/SplashScreenImage.jpg" width="480" height="800" />
   </platform>
-  <plugin name="cordova-plugin-ms-azure-mobile-apps" spec="~2.0.0" />
   <vs:toolsetVersion>6.3.1</vs:toolsetVersion>
   <engine name="android" spec="5.2.1" />
   <engine name="ios" spec="4.2.0" />
