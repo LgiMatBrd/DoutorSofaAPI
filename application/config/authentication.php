@@ -6,7 +6,7 @@
  *
  * This table should contain the username and password fields specified below. It can contain any other fields, such as "first_name"
  */
-$config['authentication']['user_table'] = 'users';
+$config['authentication']['user_table'] = 'usuarios';
 
 
 /**

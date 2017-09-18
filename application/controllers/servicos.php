@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Servicos extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -20,6 +20,11 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		if ($this->authentication->is_loggedin()) {
+			// logado
+			echo 'Lista serviços';
+		} else {
+			echo 'Faça login para continuar';
+		}
 	}
 }
