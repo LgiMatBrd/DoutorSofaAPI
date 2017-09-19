@@ -14,8 +14,8 @@ class Franquadora extends CI_Controller {
 
 		if ($this->authentication->is_loggedin()) {
 			$user_identifier = $this->authentication->read('identifier');
-			$retorno = $this->login_model->read($user_identifier);
-		} else {
+			$retorno = $this->franquadora_model->read($user_identifier);
+		} else { 
 			$retorno = ["resposta" => "0", "mensagem" => "Você deve estar logado."];	
 		}
 		echo json_encode($retorno);

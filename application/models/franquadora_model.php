@@ -8,7 +8,7 @@ class Franquadora_Model extends CI_Model {
 	}
 	
 	public function read($identificador) 
-	{
+	{ 
 		$this->db->select('*');
 		$this->db->where('id', $identificador);
 		$data = $this->db->get('usuarios');
