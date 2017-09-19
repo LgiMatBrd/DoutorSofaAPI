@@ -2,30 +2,27 @@
  
 class Login_Model extends CI_Model {
  
-public function get() {
- 
-                        $this->db->select('*');
- 
-                        $this->db->from('usuarios');
- 
-            return $this->db->get()->result();
- 
-            }
- 
-            public function post($itens){
- 
-                        $res = $this->db->insert('usuarios', $itens);
- 
-                        if($res){
- 
-                                   return $this->get();
- 
-                        }else{
- 
-                                   return FALSE;
- 
-                        }
- 
-            }
- 
+	public function getUsuario($identificador) {
+		$this->db->select('*');
+		$this->db->where('id', $identificador);
+		$data = $this->db->get('usuarios');
+		$data = $data->result_array();
+		return $data;
+	}
+
+	public function get() {
+		$this->db->select('*');
+		$this->db->from('usuarios');
+		return $this->db->get()->result();
+	}
+
+	public function post($itens) {
+		$res = $this->db->insert('usuarios', $itens);
+		if($res){
+			return $this->get();
+		} else {
+			return FALSE;
+		}
+	}
+
 }
