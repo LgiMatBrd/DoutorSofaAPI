@@ -52,14 +52,19 @@ class Login extends CI_Controller {
 	
 	public function registrar()
 	{
+
+header("Access-Control-Allow-origin: *");
+header("Content-Type: application/json");
+header("Cache-Control: no-cache");
+		
 		// Recebe o login
-		$username = $this->input->get('username');
+		$username = $this->input->post('username');
 		// Recebe a senha
-		$password = $this->input->get('password');
+		$password = $this->input->post('password');
 
 		var_dump($username);
 		var_dump($password);
-		var_dump($_POST['password']);
+		var_dump($_GET);
 
 		if (!$this->authentication->is_loggedin()) {		
 			if (isset($username) || isset($password)) {
