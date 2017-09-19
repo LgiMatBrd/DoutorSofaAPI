@@ -3,6 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller {
 
+	public function __construct() {
+		parent::__construct ();
+		// carregando o Model welcome
+		$this->load->model ( "login_model" );
+	}
 	/**
 	 * Index Page for this controller.
 	 *
@@ -20,10 +25,13 @@ class Login extends CI_Controller {
 	 */
 	public function index()
 	{
+		$data = json_decode(file_get_contents("php://input"));
 		// Recebe o login
-		$username = $this->input->get('username', TRUE);
+		$username = $data->username;
 		// Recebe a senha
-		$password = $this->input->get('password', TRUE);
+		$password = $data->password;
+
+		$retorno = ["resposta" => "0", "mensagem" => "Erro inesperado."];
 
 		if (!$this->authentication->is_loggedin()) {
 			if (isset($username) || isset($password)) {
@@ -32,39 +40,52 @@ class Login extends CI_Controller {
 				if ($this->authentication->login($username, $password))
 				{
 					// Usuário fez login com sucesso
-					echo 'Logado com sucesso, seja bem vindo';
+					$retorno = ["resposta" => "1", "mensagem" => "Logado com sucesso, seja bem vindo"];
 				} else {
 					// Erro encontrado ao fazer login
-					echo 'Dados informados estão incorretos.';
+					$retorno = ["resposta" => "0", "mensagem" => "Dados informados estão incorretos."];
 				}		
 			} else {
-				echo 'Informe todos os paramêtros necessarios.';
+				$retorno = ["resposta" => "0", "mensagem" => "Informe todos os paramêtros necessarios."];
 			}
 		} else {
-			echo 'Você está logado.';
+			$retorno = ["resposta" => "1", "mensagem" => "Você já está logado."];
 		}
+		echo json_encode($retorno);
 	}
 
 	public function deslogar()
 	{
-		$this->authentication->logout();
+		if (!$this->authentication->is_loggedin()) {	
+			$retorno = ["resposta" => "0", "mensagem" => "Você não está logado."];
+		} else {
+			$retorno = ["resposta" => "1", "mensagem" => "Deslogado com sucesso."];
+			$this->authentication->logout();
+		}
+		echo json_encode($retorno);
+	}
+
+	public function listarUsuarios()
+	{
+		if (!$this->authentication->is_loggedin()) {	
+			$retorno = ["resposta" => "0", "mensagem" => "Você não está logado."];
+		} else {
+			$res = $this->login_model->get();	
+			echo json_encode($res);	
+		}			
+		echo json_encode($retorno);
 	}
 	
 	public function registrar()
 	{
 
-header("Access-Control-Allow-origin: *");
-header("Content-Type: application/json");
-header("Cache-Control: no-cache");
-		
+		$data = json_decode(file_get_contents("php://input"));
 		// Recebe o login
-		$username = $this->input->post('username');
+		$username = $data->username;
 		// Recebe a senha
-		$password = $this->input->post('password');
+		$password = $data->password;
 
-		var_dump($username);
-		var_dump($password);
-		var_dump($_GET);
+		$retorno = ["resposta" => "0", "mensagem" => "Erro inesperado."];
 
 		if (!$this->authentication->is_loggedin()) {		
 			if (isset($username) || isset($password)) {
@@ -74,16 +95,17 @@ header("Cache-Control: no-cache");
 				if ($user_id !== FALSE)
 				{
 					// Usuário fez login com sucesso
-					echo 'Registrado com sucesso, seja bem vindo';
+					$retorno = ["resposta" => "1", "mensagem" => "Registrado com sucesso, seja bem vindo"];
 				} else {
 					// Erro encontrado ao fazer login
-					echo 'Erro ao registrar um novo usuário';
+					$retorno = ["resposta" => "0", "mensagem" => "Erro ao registrar um novo usuário, já registrado."];
 				}		
 			} else {
-				echo 'Informe todos os paramêtros necessarios.'.$username.$password;
+				$retorno = ["resposta" => "0", "mensagem" => "Informe todos os paramêtros necessarios."];
 			}
 		} else {
-			echo 'Você está logado.';
+			$retorno = ["resposta" => "1", "mensagem" => "Você já está logado."];
 		}
+		echo json_encode($retorno);
 	}
 }
