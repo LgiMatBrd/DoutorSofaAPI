@@ -2,16 +2,23 @@
  
 class Franquadora_Model extends CI_Model {
  
-	public function create($identificador) 
-	{
+ 	public function get() {
+		$this->db->select('*');
+		$this->db->from('franqueados');
+		return $this->db->get()->result();
+	}
 
+	public function create($data) 
+	{
+        $this->db->insert('franqueados', $data);
+        return $idOfInsertedData = $this->db->insert_id();
 	}
 	
 	public function read($identificador) 
-	{ 
+	{  
 		$this->db->select('*');
 		$this->db->where('id', $identificador);
-		$data = $this->db->get('usuarios');
+		$data = $this->db->get('franqueados');
 		$data = $data->result_array();
 		return $data;
 	}
@@ -23,7 +30,8 @@ class Franquadora_Model extends CI_Model {
 
 	public function delete($identificador) 
 	{
-
+		$this->db->where('id', $identificador);
+		$this->db->delete('franqueados'); 
 	}
 
 }
