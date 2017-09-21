@@ -9,6 +9,7 @@ API desenvolvida para o aplicativo da Doutor Sofá.
 # END-POINTS 
 
   - **LOGIN**
+  
  -- **login**/index - Lista usuários.
  
  -- **login**/deslogar - Deslogar usuário.
@@ -25,6 +26,7 @@ API desenvolvida para o aplicativo da Doutor Sofá.
  
  
   - **FRANQUEADO**
+  
   -- **franqueado**/index - Lista franqueados.
   
   -- **franqueado**/listar - Lista franqueados.
@@ -37,6 +39,7 @@ API desenvolvida para o aplicativo da Doutor Sofá.
   
 
   - **SERVIÇO**
+  
   -- **servico**/index - Lista serviço.
   
   -- **servico**/listar - Lista serviço.
