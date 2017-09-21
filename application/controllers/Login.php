@@ -16,7 +16,7 @@ class Login extends CI_Controller {
 		// Recebe a senha
 		$password = $data->password;
 
-		$retorno = ["resposta" => "0", "mensagem" => "Erro inesperado."];
+		$retorno = array("resposta" => "0", "mensagem" => "Erro inesperado.");
 
 		if (!$this->authentication->is_loggedin()) {
 			if (isset($username) || isset($password)) {
@@ -28,20 +28,20 @@ class Login extends CI_Controller {
 					$sessao[0] = $this->authentication->read('identifier');
 					$sessao[1] = $this->authentication->read('username');
 
-					$retorno = ["resposta" => "1", "mensagem" => "Logado com sucesso, seja bem vindo", "sessao" => $sessao];
+					$retorno = array("resposta" => "1", "mensagem" => "Logado com sucesso, seja bem vindo", "sessao" => $sessao);
 
 				} else {
 					// Erro encontrado ao fazer login
-					$retorno = ["resposta" => "0", "mensagem" => "Dados informados estão incorretos."];
+					$retorno = array("resposta" => "0", "mensagem" => "Dados informados estão incorretos.");
 				}		
 			} else {
-				$retorno = ["resposta" => "0", "mensagem" => "Informe todos os paramêtros necessarios."];
+				$retorno = array("resposta" => "0", "mensagem" => "Informe todos os paramêtros necessarios.");
 			}
 		} else {
 			$sessao[0] = $this->authentication->read('identifier');
 			$sessao[1] = $this->authentication->read('username');
 
-			$retorno = ["resposta" => "1", "mensagem" => "Você já está logado.", "sessao" => $sessao];	
+			$retorno = array("resposta" => "1", "mensagem" => "Você já está logado.", "sessao" => $sessao);	
 		}
 		echo json_encode($retorno);
 	}
@@ -49,9 +49,9 @@ class Login extends CI_Controller {
 	public function deslogar()
 	{
 		if (!$this->authentication->is_loggedin()) {	
-			$retorno = ["resposta" => "0", "mensagem" => "Você não está logado."];
+			$retorno = array("resposta" => "0", "mensagem" => "Você não está logado.");
 		} else {
-			$retorno = ["resposta" => "1", "mensagem" => "Deslogado com sucesso."];
+			$retorno = array("resposta" => "1", "mensagem" => "Deslogado com sucesso.");
 			$this->authentication->logout();
 		}
 		echo json_encode($retorno);
@@ -60,7 +60,7 @@ class Login extends CI_Controller {
 	public function listarUsuarios()
 	{
 		if (!$this->authentication->is_loggedin()) {	
-			$retorno = ["resposta" => "0", "mensagem" => "Você não está logado."];
+			$retorno = array("resposta" => "0", "mensagem" => "Você não está logado.");
 		} else {
 			$retorno = $this->login_model->get();	
 		}			
@@ -70,7 +70,7 @@ class Login extends CI_Controller {
 	public function detalhaUsuario()
 	{
 		if (!$this->authentication->is_loggedin()) {	
-			$retorno = ["resposta" => "0", "mensagem" => "Você não está logado."];
+			$retorno = array("resposta" => "0", "mensagem" => "Você não está logado.");
 		} else {
 
 			$user_identifier = $this->authentication->read('identifier');
@@ -87,9 +87,9 @@ class Login extends CI_Controller {
 
 		if ($this->authentication->delete_user($user_identifier))
 		{
-			$retorno = ["resposta" => "1", "mensagem" => "Deletado com sucesso!"];
+			$retorno = array("resposta" => "1", "mensagem" => "Deletado com sucesso!");
 		} else {
-			$retorno = ["resposta" => "0", "mensagem" => "Erro ao deletar usuário!"];
+			$retorno = array("resposta" => "0", "mensagem" => "Erro ao deletar usuário!");
 		}		
 		echo json_encode($retorno);
 	}
@@ -104,7 +104,7 @@ class Login extends CI_Controller {
 		// Recebe a senha
 		$password = $data->senha;
 
-		$retorno = ["resposta" => "0", "mensagem" => "Erro inesperado."];
+		$retorno = array("resposta" => "0", "mensagem" => "Erro inesperado.");
 
 		if (isset($username) || isset($password)) {
 			$user_id = $this->authentication->create_user($username, $password);
@@ -120,13 +120,13 @@ class Login extends CI_Controller {
 				$this->db->update('usuarios'); 
 
 				// Usuário fez login com sucesso
-				$retorno = ["resposta" => "1", "mensagem" => "Registrado com sucesso, seja bem vindo"];
+				$retorno = array("resposta" => "1", "mensagem" => "Registrado com sucesso, seja bem vindo");
 			} else {
 				// Erro encontrado ao fazer login
-				$retorno = ["resposta" => "0", "mensagem" => "Erro ao registrar um novo usuário, já registrado."];
+				$retorno = array("resposta" => "0", "mensagem" => "Erro ao registrar um novo usuário, já registrado.");
 			}		
 		} else {
-			$retorno = ["resposta" => "0", "mensagem" => "Informe todos os paramêtros necessarios."];
+			$retorno = array("resposta" => "0", "mensagem" => "Informe todos os paramêtros necessarios.");
 		}
 
 		echo json_encode($retorno);

@@ -10,21 +10,21 @@ class Servico extends CI_Controller {
 
 	public function index()
 	{
-		$retorno = ["resposta" => "0", "mensagem" => "Erro inesperado."];
+		$retorno = array("resposta" => "0", "mensagem" => "Erro inesperado.");
 
 		if ($this->authentication->is_loggedin()) {
 			$user_identifier = $this->authentication->read('identifier');
 			$retorno = $this->servico_model->read($user_identifier);
 		} else { 
-			$retorno = ["resposta" => "0", "mensagem" => "Você deve estar logado."];	
+			$retorno = array("resposta" => "0", "mensagem" => "Você deve estar logado.");	
 		}
 		echo json_encode($retorno);
 	}
 
 	public function listar()
 	{
-		if (!$this->authentication->is_loggedin()) {	
-			$retorno = ["resposta" => "0", "mensagem" => "Você não está logado."];
+		if (!$this->authentication->is_loggedin()) {
+			$retorno = array("resposta" => "0", "mensagem" => "Você não está logado.");
 		} else {
 			$this->load->model("login_model");
 			$user_identifier = $this->authentication->read('identifier');
@@ -39,8 +39,8 @@ class Servico extends CI_Controller {
 	{
 		$data = json_decode(file_get_contents("php://input"));
 
-		if (!$this->authentication->is_loggedin()) {	
-			$retorno = ["resposta" => "0", "mensagem" => "Você não está logado."];
+		if (!$this->authentication->is_loggedin()) {
+			$retorno = array("resposta" => "0", "mensagem" => "Você não está logado.");
 		} else {
 			$retorno = $this->servico_model->read($data);	
 		}			
@@ -55,7 +55,7 @@ class Servico extends CI_Controller {
 
 		$this->servico_model->delete($id_usuario);
 		
-		$retorno = ["resposta" => "1", "mensagem" => "Deletado com sucesso!"];
+		$retorno = array("resposta" => "1", "mensagem" => "Deletado com sucesso!");
 		
 		echo json_encode($retorno);
 	}
@@ -65,7 +65,7 @@ class Servico extends CI_Controller {
 
 		$data = json_decode(file_get_contents("php://input"));
 
-		$retorno = ["resposta" => "0", "mensagem" => "Erro inesperado."];
+		$retorno = array("resposta" => "0", "mensagem" => "Erro inesperado.");
 
 		if (isset($data)) {
 			$user_id = $this->servico_model->create($data);
@@ -81,13 +81,13 @@ class Servico extends CI_Controller {
 				$this->db->where('id', $user_id);
 				$this->db->update('servico'); 
 
-				$retorno = ["resposta" => "1", "mensagem" => "Registrado com sucesso, seja bem vindo"];
+				$retorno = array("resposta" => "1", "mensagem" => "Registrado com sucesso, seja bem vindo");
 			} else {
 				// Erro encontrado ao fazer login
-				$retorno = ["resposta" => "0", "mensagem" => "Erro ao registrar um novo usuário, já registrado."];
+				$retorno = array("resposta" => "0", "mensagem" => "Erro ao registrar um novo usuário, já registrado.");
 			}		
 		} else {
-			$retorno = ["resposta" => "0", "mensagem" => "Informe todos os paramêtros necessarios."];
+			$retorno = array("resposta" => "0", "mensagem" => "Informe todos os paramêtros necessarios.");
 		}
 
 		echo json_encode($retorno);

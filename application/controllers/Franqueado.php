@@ -9,14 +9,14 @@ class Franqueado extends CI_Controller {
 	}
 
 	public function index()
-	{
-		$retorno = ["resposta" => "0", "mensagem" => "Erro inesperado."];
+	{ 
+		$retorno = array("resposta" => "0", "mensagem" => "Erro inesperado.");
 
 		if ($this->authentication->is_loggedin()) {
 			$user_identifier = $this->authentication->read('identifier');
 			$retorno = $this->franqueado_model->read($user_identifier);
 		} else { 
-			$retorno = ["resposta" => "0", "mensagem" => "Você deve estar logado."];	
+			$retorno = array("resposta" => "0", "mensagem" => "Você deve estar logado.");	
 		}
 		echo json_encode($retorno);
 	}
@@ -24,7 +24,7 @@ class Franqueado extends CI_Controller {
 	public function listar()
 	{
 		if (!$this->authentication->is_loggedin()) {	
-			$retorno = ["resposta" => "0", "mensagem" => "Você não está logado."];
+			$retorno = array("resposta" => "0", "mensagem" => "Você não está logado.");
 		} else {
 			$retorno = $this->franqueado_model->get();	
 		}			
@@ -39,7 +39,7 @@ class Franqueado extends CI_Controller {
 
 		$this->franqueado_model->delete($id_usuario);
 		
-		$retorno = ["resposta" => "1", "mensagem" => "Deletado com sucesso!"];
+		$retorno = array("resposta" => "1", "mensagem" => "Deletado com sucesso!");
 		
 		echo json_encode($retorno);
 	}
@@ -49,7 +49,7 @@ class Franqueado extends CI_Controller {
 
 		$data = json_decode(file_get_contents("php://input"));
 
-		$retorno = ["resposta" => "0", "mensagem" => "Erro inesperado."];
+		$retorno = array("resposta" => "0", "mensagem" => "Erro inesperado.");
 
 		if (isset($data)) {
 			$user_id = $this->franqueado_model->create($data);
@@ -58,13 +58,13 @@ class Franqueado extends CI_Controller {
 			if ($user_id !== FALSE)
 			{
 				// Usuário fez login com sucesso
-				$retorno = ["resposta" => "1", "mensagem" => "Registrado com sucesso, seja bem vindo"];
+				$retorno = array("resposta" => "1", "mensagem" => "Registrado com sucesso, seja bem vindo");
 			} else {
 				// Erro encontrado ao fazer login
-				$retorno = ["resposta" => "0", "mensagem" => "Erro ao registrar um novo usuário, já registrado."];
+				$retorno = array("resposta" => "0", "mensagem" => "Erro ao registrar um novo usuário, já registrado.");
 			}		
 		} else {
-			$retorno = ["resposta" => "0", "mensagem" => "Informe todos os paramêtros necessarios."];
+			$retorno = array("resposta" => "0", "mensagem" => "Informe todos os paramêtros necessarios.");
 		}
 
 		echo json_encode($retorno);
