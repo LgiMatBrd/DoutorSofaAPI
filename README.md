@@ -11,15 +11,10 @@ API desenvolvida para o aplicativo da Doutor Sofá.
   - **LOGIN**
   
  -- **login**/index - Lista usuários.
- 
  -- **login**/deslogar - Deslogar usuário.
- 
  -- **login**/listarUsuarios - Listar usuários.
- 
  -- **login**/detalhaUsuario - Retorna dados do usuário.
- 
  -- **login**/deletar - Deleta usuário.
- 
  -- **login**/registrar - Registra novo usuário.
 
  
