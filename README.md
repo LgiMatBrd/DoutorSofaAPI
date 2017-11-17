@@ -51,5 +51,14 @@ API desenvolvida para o aplicativo da Doutor Sofá.
   -- **servico**/registrar - Registra serviço.
  
   -- **servico**/editar - Edita serviço.
+  
+
+  - **FOTOS**
+  
+  -- **fotos**/lista - Lista fotos do serviço.
+  
+  -- **fotos**/deletar - Deleta foto.
+  
+  -- **fotos**/update - Update foto.
 
 
