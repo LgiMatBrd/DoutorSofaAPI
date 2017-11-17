@@ -24,9 +24,10 @@ class Servico_Model extends CI_Model {
 		return $data;
 	}
 
-	public function update($identificador) 
+	public function update($id,$data) 
 	{
-
+		$this->db->where('id', $id);
+		$this->db->update('servico', $data);
 	}
 
 	public function delete($identificador) 

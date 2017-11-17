@@ -93,4 +93,29 @@ class Servico extends CI_Controller {
 		echo json_encode($retorno);
 	}	
 
+	public function editar()
+	{
+
+		$data = json_decode(file_get_contents("php://input"));
+
+		$retorno = array("resposta" => "0", "mensagem" => "Erro inesperado.");
+
+		if (isset($data)) {
+			$user_id = $this->servico_model->update($data->id, $data);
+
+			// Checa os dados informados
+			if ($user_id !== FALSE)
+			{
+				$retorno = array("resposta" => "1", "mensagem" => "Registrado com sucesso, seja bem vindo");
+			} else {
+				// Erro encontrado ao fazer login
+				$retorno = array("resposta" => "0", "mensagem" => "Erro ao registrar um novo usuário, já registrado.");
+			}		
+		} else {
+			$retorno = array("resposta" => "0", "mensagem" => "Informe todos os paramêtros necessarios.");
+		}
+
+		echo json_encode($retorno);
+	}	
+
 }
