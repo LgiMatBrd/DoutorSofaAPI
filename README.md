@@ -49,5 +49,7 @@ API desenvolvida para o aplicativo da Doutor Sofá.
   -- **servico**/deletar - Deleta serviço.
   
   -- **servico**/registrar - Registra serviço.
+ 
+  -- **servico**/editar - Edita serviço.
 
 
