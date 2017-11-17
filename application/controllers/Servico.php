@@ -81,6 +81,10 @@ class Servico extends CI_Controller {
 				$this->db->where('id', $user_id);
 				$this->db->update('servico'); 
 
+				// adicona fotos
+				//$data->fotos;
+
+
 				$retorno = array("resposta" => "1", "mensagem" => "Registrado com sucesso, seja bem vindo");
 			} else {
 				// Erro encontrado ao fazer login
