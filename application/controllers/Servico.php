@@ -79,7 +79,7 @@ class Servico extends CI_Controller {
 				$user_details = $this->login_model->getUsuario($user_identifier);
 				$this->db->set('FranqueadaDona', $user_details[0]['franquia']);
 				$this->db->where('id', $user_id);
-				$this->db->update('servico'); 
+				$this->db->update('servico');
 
 				// adicona fotos
 				//$data->fotos;
