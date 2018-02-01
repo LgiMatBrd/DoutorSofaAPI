@@ -4,7 +4,7 @@ class Fotos_Model extends CI_Model {
  
  	public function get($user_details) {
 		$this->db->select('*');
-		//$this->db->where('servicoDono', $user_details[0]['franquia']);
+		$this->db->where('FranqueadaDona', $user_details[0]['franquia']);
 		$this->db->from('fotos');
 		return $this->db->get()->result();
 	}
