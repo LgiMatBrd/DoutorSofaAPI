@@ -33,5 +33,14 @@ class Franqueado_Model extends CI_Model {
 		$this->db->where('id', $identificador);
 		$this->db->delete('franqueados'); 
 	}
+	
+	public function BuscaFranquiaUsuario($identificador) 
+	{  
+		$this->db->select('*');
+		$this->db->where('id', $identificador);
+		$data = $this->db->get('franqueados');
+		$data = $data->result();
+		return $data;
+	}
 
 }

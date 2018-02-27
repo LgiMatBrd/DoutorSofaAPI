@@ -62,7 +62,15 @@ class Login extends CI_Controller {
 		if (!$this->authentication->is_loggedin()) {	
 			$retorno = array("resposta" => "0", "mensagem" => "Você não está logado.");
 		} else {
-			$retorno = $this->login_model->get();	
+			$user_identifier = $this->authentication->read('identifier');
+			$user_details = $this->login_model->getUsuario($user_identifier);
+
+			if($user_details[0]['tipoAcesso'] == 3) {
+				//$franquia = $this->franqueado_model->get();
+				$retorno = $this->login_model->get();	
+			} else {
+				$retorno = $this->login_model->read($user_details[0]['franquia']);	
+			}					
 		}			
 		echo json_encode($retorno);
 	}

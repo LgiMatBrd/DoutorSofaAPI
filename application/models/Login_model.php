@@ -15,6 +15,15 @@ class Login_Model extends CI_Model {
 		$this->db->from('usuarios');
 		return $this->db->get()->result();
 	}
+	
+	public function read($identificador) 
+	{  
+		$this->db->select('*');
+		$this->db->where('franquia', $identificador);
+		$data = $this->db->get('usuarios');
+		$data = $data->result();
+		return $data;
+	}
 
 	public function post($itens) {
 		$res = $this->db->insert('usuarios', $itens);
